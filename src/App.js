@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect} from "react";
+import Home from "./screens/Home";
+import { useResultContext } from "./context/ContextProvider";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const { data, getResult, ordersData, productsData, usersData, setOrdersData } = useResultContext();
+
+  useEffect(() => {
+    getResult("https://assessment.api.vweb.app/users");
+    getResult("https://assessment.api.vweb.app/products");
+    getResult("https://assessment.api.vweb.app/orders");
+
+  }, [])
+
+  
+
+
+  
+  
+
+
+  return <Home />;
 }
 
 export default App;
